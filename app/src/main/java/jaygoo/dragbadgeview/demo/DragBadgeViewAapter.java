@@ -60,15 +60,14 @@ public class DragBadgeViewAapter extends BaseAdapter {
         ViewHolder holder = ViewHolder.getHolder(convertView);
         holder.mContent.setText(list.get(position));
         //item固定小红点layout
-        LinearLayout pointLayout = holder.mPointLayout;
         //item固定小红点
         final TextView point = holder.mPoint;
 
         boolean visiable = !mRemoved.contains(position);
-        pointLayout.setVisibility(visiable ? View.VISIBLE : View.GONE);
+        point.setVisibility(visiable ? View.VISIBLE : View.GONE);
         if (visiable) {
 
-            DragBadgeViewListener mGooListener = new DragBadgeViewListener(mContext, pointLayout , Color.RED) {
+            DragBadgeViewListener mGooListener = new DragBadgeViewListener(mContext, point , Color.RED) {
                 @Override
                 public void onDisappear(PointF mDragCenter) {
                     super.onDisappear(mDragCenter);
@@ -85,7 +84,7 @@ public class DragBadgeViewAapter extends BaseAdapter {
                 }
             };
             //在point父布局内的触碰事件都进行监听
-            pointLayout.setOnTouchListener(mGooListener);
+            point.setOnTouchListener(mGooListener);
         }
         return convertView;
     }
@@ -94,13 +93,11 @@ public class DragBadgeViewAapter extends BaseAdapter {
 
         public ImageView mImage;
         public TextView mPoint;
-        public LinearLayout mPointLayout;
         public TextView mContent;
 
         public ViewHolder(View convertView) {
             mImage = (ImageView) convertView.findViewById(R.id.iv_head);
             mPoint = (TextView) convertView.findViewById(R.id.point);
-            mPointLayout = (LinearLayout) convertView.findViewById(R.id.ll_point);
             mContent = (TextView) convertView.findViewById(R.id.tv_content);
         }
 

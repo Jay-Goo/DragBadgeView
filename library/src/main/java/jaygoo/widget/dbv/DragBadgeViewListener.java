@@ -83,6 +83,7 @@ public class DragBadgeViewListener implements OnTouchListener, DragBadgeView.OnD
             mDragBadgeView.setOnDisappearListener(this);
             // 添加当前DragBadgeView到WindowManager
             mWm.addView(mDragBadgeView, mParams);
+            pointLayout.setVisibility(View.INVISIBLE);
         }
         // 将所有touch事件转交给DragBadgeView处理
         mDragBadgeView.onTouchEvent(event);
