@@ -6,6 +6,7 @@ import android.graphics.PointF;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.support.v4.view.MotionEventCompat;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -43,7 +44,12 @@ public class DragBadgeViewListener implements OnTouchListener, DragBadgeView.OnD
         mDragBadgeView = new DragBadgeView(mContext,color);
         mWm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         mParams = new WindowManager.LayoutParams();
-        mParams.format = PixelFormat.TRANSLUCENT;//使窗口支持透明度
+        mParams.gravity = Gravity.LEFT + Gravity.TOP;
+        mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        mParams.format = PixelFormat.TRANSLUCENT;
+        mParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+        mParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        mParams.height = WindowManager.LayoutParams.MATCH_PARENT;
         mHandler = new Handler(mContext.getMainLooper());
     }
 
@@ -55,8 +61,15 @@ public class DragBadgeViewListener implements OnTouchListener, DragBadgeView.OnD
         mDragBadgeView = new DragBadgeView(mContext,color);
 
         mWm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+//        mParams = new WindowManager.LayoutParams();
+//        mParams.format = PixelFormat.TRANSLUCENT;//使窗口支持透明度
         mParams = new WindowManager.LayoutParams();
-        mParams.format = PixelFormat.TRANSLUCENT;//使窗口支持透明度
+        mParams.gravity = Gravity.LEFT + Gravity.TOP;
+        mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        mParams.format = PixelFormat.TRANSLUCENT;
+        mParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+        mParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        mParams.height = WindowManager.LayoutParams.MATCH_PARENT;
         mHandler = new Handler(mContext.getMainLooper());
     }
 
@@ -118,7 +131,7 @@ public class DragBadgeViewListener implements OnTouchListener, DragBadgeView.OnD
                 public void run() {
                     mWm.removeView(bubbleLayout);
                 }
-            }, 501);
+            }, 351);
         }
 
     }
